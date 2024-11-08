@@ -3,7 +3,7 @@ class GemStone:
     store_name = "Luxury Gems" 
 
     def __init__(self, carats=2.5, price=100000, name="Смарагд", color="Зелений", origin="Африка"):
-        self.carats = carats if carats else 0.0
+        self.__carats = carats if carats else 0.0
         self.__price = price if price else 0.0
         self.__name = name if name else "Unknown"
 
@@ -12,12 +12,12 @@ class GemStone:
         self.origin = origin  
         GemStone.total_gems += 1
     
-    def __del(self):
+    def __del__(self):
         GemStone.total_gems -= 1
-        print(f"Камінь {self.name} видалено")
+        print(f"Камінь {self.__name} видалено")
     
     def get_carats(self):
-        return self.carats
+        return self.__carats
         
     def get_price(self):
         return self.__price
@@ -26,7 +26,7 @@ class GemStone:
         return self.__name
     
     def set_carats(self, carats):
-        self.carats = carats
+        self.__carats = carats
         
     def set_price(self, price):
         self.__price = price
@@ -34,16 +34,14 @@ class GemStone:
     def set_name(self, name):
         self.__name = name
     
-    def __str(self):
-        return (f"Коштовний камінь: {self.name}, {self.__carats} карат, "
+    def __str__(self):
+        return (f"Коштовний камінь: {self.__name}, {self.__carats} карат, "
                 f"колір: {self.color}, походження: {self.origin}, ціна: {self.__price} грн")
     
-    def __repr(self):
-        return (f"GemStone(name='{self.name}', carats={self.__carats}, "
+    def __repr__(self):
+        return (f"GemStone(name='{self.__name}', carats={self.__carats}, "
                 f"price={self.__price}, color='{self.color}', origin='{self.origin}')")
-    def __del__(self):
-        print(f"Клас видалено: {self.__name}")
-
+    
 def main():
     diamond = GemStone(2.5, 50000, "Діамант", "Безбарвний", "Африка")
     ruby = GemStone(1.8, 25000, "Рубін", "Червоний", "Бірма")
@@ -64,4 +62,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-       
